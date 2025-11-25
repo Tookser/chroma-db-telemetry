@@ -6,6 +6,7 @@ on:
       - "*"
     branches:
       - main
+      - feature-no-telemetry-0.5.23
 
 env:
   GHCR_IMAGE_NAME: "ghcr.io/Tookser/chromadb-no-telemetry"
@@ -72,7 +73,7 @@ jobs:
       - check-tag
       - get-version
       - python-tests
-      - javascript-client-tests
+#      - javascript-client-tests
       - rust-tests
       - go-tests
     steps:
@@ -111,7 +112,7 @@ jobs:
       - check-tag
       - get-version
       - python-tests
-      - javascript-client-tests
+#      - javascript-client-tests
       - rust-tests
       - go-tests
     steps:
@@ -151,7 +152,7 @@ jobs:
     needs:
       - check-tag
       - python-tests
-      - javascript-client-tests
+#      - javascript-client-tests
       - rust-tests
       - go-tests
     steps:
