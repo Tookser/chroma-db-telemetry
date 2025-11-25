@@ -215,7 +215,7 @@ jobs:
         id: builddate
         run: echo "builddate=$(date +'%Y-%m-%dT%H:%M')" >> $GITHUB_OUTPUT
       - name: Release Tagged Version
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.20.0
         if: ${{ needs.check-tag.outputs.tag_matches == 'true' }}
         with:
           body: |
