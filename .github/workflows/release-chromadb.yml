@@ -115,6 +115,8 @@ jobs:
 #      - javascript-client-tests
 #      - rust-tests
 #      - go-tests
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -155,6 +157,8 @@ jobs:
 #      - javascript-client-tests
 #      - rust-tests
 #      - go-tests
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -192,6 +196,8 @@ jobs:
 #      - release-docker
       - release-pypi
       - release-thin-pypi
+    permissions:
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
