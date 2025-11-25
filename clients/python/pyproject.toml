@@ -1,12 +1,13 @@
 [project]
-name = "chromadb-client"
+name = "chromadb-client-no-telemetry"
 dynamic = ["version"]
 
 authors = [
   { name = "Jeff Huber", email = "jeff@trychroma.com" },
   { name = "Anton Troynikov", email = "anton@trychroma.com" },
+  { name = "Ivan Belashkin", email = "t2468ttt@gmail.com"}
 ]
-description = "Chroma Client."
+description = "Chroma Client. (without product telemetry)"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
