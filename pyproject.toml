@@ -1,12 +1,12 @@
 [project]
-name = "chromadb"
+name = "chromadb-no-telemetry-fork"
 dynamic = ["version"]
 
 authors = [
   { name = "Jeff Huber", email = "jeff@trychroma.com" },
   { name = "Anton Troynikov", email = "anton@trychroma.com" },
 ]
-description = "Chroma."
+description = "Chroma. (without product telemetry)"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -66,8 +66,8 @@ ignore_errors = true
 chroma = "chromadb.cli.cli:app"
 
 [project.urls]
-"Homepage" = "https://github.com/chroma-core/chroma"
-"Bug Tracker" = "https://github.com/chroma-core/chroma/issues"
+"Homepage" = "https://github.com/Tookser/chromadb-no-telemetry"
+"Bug Tracker" = "https://github.com/Tookser/chromadb-no-telemetry/issues"
 
 [build-system]
 requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
