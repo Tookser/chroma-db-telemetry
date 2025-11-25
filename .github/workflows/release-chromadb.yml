@@ -4,9 +4,9 @@ on:
   push:
     tags:
       - "*"
-    branches:
+#    branches:
 #      - main
-      - feature-no-telemetry-0.5.23
+#      - feature-no-telemetry-0.5.23
 
 env:
   GHCR_IMAGE_NAME: "ghcr.io/Tookser/chromadb-no-telemetry"
@@ -234,7 +234,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release Latest
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.20.0
         if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
         with:
           tag: "latest"
