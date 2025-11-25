@@ -197,9 +197,10 @@ jobs:
 #      - release-docker
       - release-pypi
       - release-thin-pypi
-    permissions:
-      id-token: write
-      contents: write
+    permissions: write-all
+#    permissions:
+#      id-token: write
+#      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
