@@ -134,7 +134,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "built-chromadb-package"
-          path: "dist/chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz"
+          path: "dist/chromadb_no_telemetry-${{needs.get-version.outputs.version}}.tar.gz"
       - name: Publish to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
@@ -221,7 +221,7 @@ jobs:
             Git ref: `${{github.ref}}`
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz`
-          artifacts: "dist/chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz"
+          artifacts: "dist/chromadb_no_telemetry-${{needs.get-version.outputs.version}}.tar.gz"
           prerelease: false
           makeLatest: true
           generateReleaseNotes: true
@@ -243,7 +243,7 @@ jobs:
             Git ref: `${{github.ref}}`
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz`
-          artifacts: "dist/chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz"
+          artifacts: "dist/chromadb_no_telemetry-${{needs.get-version.outputs.version}}.tar.gz"
           allowUpdates: true
           removeArtifacts: true
           prerelease: true
