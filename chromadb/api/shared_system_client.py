@@ -4,7 +4,8 @@ import uuid
 from chromadb.api import ServerAPI
 from chromadb.config import Settings, System
 from chromadb.telemetry.product import ProductTelemetryClient
-from chromadb.telemetry.product.events import ClientStartEvent
+
+# from chromadb.telemetry.product.events import ClientStartEvent
 
 
 class SharedSystemClient:
@@ -89,5 +90,6 @@ class SharedSystemClient:
         return SharedSystemClient._identifier_to_system[self._identifier]
 
     def _submit_client_start_event(self) -> None:
-        telemetry_client = self._system.instance(ProductTelemetryClient)
-        telemetry_client.capture(ClientStartEvent())
+        pass
+        # telemetry_client = self._system.instance(ProductTelemetryClient)
+        # telemetry_client.capture(ClientStartEvent())
