@@ -1,9 +1,3 @@
-WIP - fork to remove some telemetria from Chroma (python), version 0.5.23.
-
-[Original README](ORIGINAL_README.md)
-
----
-
 <p align="center">
   <a href="https://trychroma.com"><img src="https://user-images.githubusercontent.com/891664/227103090-6624bf7d-9524-4e05-9d2c-c28d5d451481.png" alt="Chroma logo"></a>
 </p>
