@@ -220,7 +220,6 @@ jobs:
             Git ref: `${{github.ref}}`
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz`
-            Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
           artifacts: "dist/chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz"
           prerelease: false
           makeLatest: true
@@ -243,7 +242,6 @@ jobs:
             Git ref: `${{github.ref}}`
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz`
-            Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
           artifacts: "dist/chromadb-no-telemetry-${{needs.get-version.outputs.version}}.tar.gz"
           allowUpdates: true
           removeArtifacts: true

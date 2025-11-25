@@ -1,5 +1,5 @@
 [project]
-name = "chromadb-no-telemetry-fork"
+name = "chromadb-no-telemetry"
 dynamic = ["version"]
 
 authors = [
