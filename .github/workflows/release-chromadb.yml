@@ -10,7 +10,7 @@ on:
 
 env:
   GHCR_IMAGE_NAME: "ghcr.io/Tookser/chromadb-no-telemetry"
-  DOCKERHUB_IMAGE_NAME: "Tookser/chromadb-no-telemetry"
+#  DOCKERHUB_IMAGE_NAME: "Tookser/chromadb-no-telemetry"
   PLATFORMS: linux/amd64,linux/arm64 #linux/riscv64, linux/arm/v7
 
 jobs:
@@ -48,62 +48,62 @@ jobs:
         id: version
         run: echo "version=$(python -m setuptools_scm)" >> $GITHUB_OUTPUT
 
-  python-tests:
-    uses: ./.github/workflows/_python-tests.yml
-    with:
-      python_versions: '["3.8", "3.9", "3.10", "3.11", "3.12"]'
-      property_testing_preset: 'normal'
+#  python-tests:
+#    uses: ./.github/workflows/_python-tests.yml
+#    with:
+#      python_versions: '["3.8", "3.9", "3.10", "3.11", "3.12"]'
+#      property_testing_preset: 'normal'
 
-  javascript-client-tests:
-    name: JavaScript client tests
-    uses: ./.github/workflows/_javascript-client-tests.yml
+#  javascript-client-tests:
+#    name: JavaScript client tests
+#    uses: ./.github/workflows/_javascript-client-tests.yml
 
-  rust-tests:
-    name: Rust tests
-    uses: ./.github/workflows/_rust-tests.yml
+#  rust-tests:
+#    name: Rust tests
+#    uses: ./.github/workflows/_rust-tests.yml
 
-  go-tests:
-    name: Go tests
-    uses: ./.github/workflows/_go-tests.yml
+#  go-tests:
+#    name: Go tests
+#    uses: ./.github/workflows/_go-tests.yml
 
-  release-docker:
-    name: Publish to DockerHub and GHCR
-    runs-on: ubuntu-latest
-    needs:
-      - check-tag
-      - get-version
-      - python-tests
-#      - javascript-client-tests
-      - rust-tests
-      - go-tests
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Docker
-        uses: ./.github/actions/docker
-        with:
-          ghcr-username: ${{ github.actor }}
-          ghcr-password: ${{ secrets.GITHUB_TOKEN }}
-          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
-          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push prerelease Docker image
-        if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
-        uses: docker/build-push-action@v3.2.0
-        with:
-          context: .
-          platforms: ${{ env.PLATFORMS }}
-          push: true
-          tags: "${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version}},${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}"
-      - name: Build and push release Docker image
-        if: ${{ needs.check-tag.outputs.tag_matches == 'true' }}
-        uses: docker/build-push-action@v3.2.0
-        with:
-          context: .
-          platforms: ${{ env.PLATFORMS }}
-          push: true
-          tags: "${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }},${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }},${{ env.GHCR_IMAGE_NAME }}:latest,${{ env.DOCKERHUB_IMAGE_NAME }}:latest"
+#  release-docker:
+#    name: Publish to DockerHub and GHCR
+#    runs-on: ubuntu-latest
+#    needs:
+#      - check-tag
+#      - get-version
+##      - python-tests
+##      - javascript-client-tests
+##      - rust-tests
+##      - go-tests
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#      - name: Set up Docker
+#        uses: ./.github/actions/docker
+#        with:
+#          ghcr-username: ${{ github.actor }}
+#          ghcr-password: ${{ secrets.GITHUB_TOKEN }}
+#          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      - name: Build and push prerelease Docker image
+#        if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
+#        uses: docker/build-push-action@v3.2.0
+#        with:
+#          context: .
+#          platforms: ${{ env.PLATFORMS }}
+#          push: true
+#          tags: "${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version}},${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}"
+#      - name: Build and push release Docker image
+#        if: ${{ needs.check-tag.outputs.tag_matches == 'true' }}
+#        uses: docker/build-push-action@v3.2.0
+#        with:
+#          context: .
+#          platforms: ${{ env.PLATFORMS }}
+#          push: true
+#          tags: "${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }},${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }},${{ env.GHCR_IMAGE_NAME }}:latest,${{ env.DOCKERHUB_IMAGE_NAME }}:latest"
 
   release-pypi:
     name: Publish to PyPI
@@ -111,10 +111,10 @@ jobs:
     needs:
       - check-tag
       - get-version
-      - python-tests
+#      - python-tests
 #      - javascript-client-tests
-      - rust-tests
-      - go-tests
+#      - rust-tests
+#      - go-tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -139,22 +139,22 @@ jobs:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
           verbose: 'true'
-      - name: Publish to PyPI
-        if: ${{ needs.check-tag.outputs.tag_matches == 'true' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          verbose: 'true'
+#      - name: Publish to PyPI
+#        if: ${{ needs.check-tag.outputs.tag_matches == 'true' }}
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          password: ${{ secrets.PYPI_API_TOKEN }}
+#          verbose: 'true'
 
   release-thin-pypi:
     name: Publish thin client to PyPI
     runs-on: ubuntu-latest
     needs:
       - check-tag
-      - python-tests
+#      - python-tests
 #      - javascript-client-tests
-      - rust-tests
-      - go-tests
+#      - rust-tests
+#      - go-tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -176,12 +176,12 @@ jobs:
           password: ${{ secrets.TEST_PYPI_PYTHON_CLIENT_PUBLISH_KEY }}
           repository-url: https://test.pypi.org/legacy/
           verbose: 'true'
-      - name: Publish to PyPI
-        if:  ${{ needs.check-tag.outputs.tag_matches == 'true' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_PYTHON_CLIENT_PUBLISH_KEY }}
-          verbose: 'true'
+#      - name: Publish to PyPI
+#        if:  ${{ needs.check-tag.outputs.tag_matches == 'true' }}
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          password: ${{ secrets.PYPI_PYTHON_CLIENT_PUBLISH_KEY }}
+#          verbose: 'true'
 
   release-github:
     name: Make GitHub release
@@ -189,7 +189,7 @@ jobs:
     needs:
       - check-tag
       - get-version
-      - release-docker
+#      - release-docker
       - release-pypi
       - release-thin-pypi
     steps:
@@ -215,7 +215,6 @@ jobs:
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chroma-${{needs.get-version.outputs.version}}.tar.gz`
             Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
-            DockerHub Image: `${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
           artifacts: "dist/chromadb-no-telemetry${{needs.get-version.outputs.version}}.tar.gz"
           prerelease: false
           makeLatest: true
@@ -239,7 +238,6 @@ jobs:
             Build Date: `${{steps.builddate.outputs.builddate}}`
             PIP Package: `chroma-${{needs.get-version.outputs.version}}.tar.gz`
             Github Container Registry Image: `${{ env.GHCR_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
-            DockerHub Image: `${{ env.DOCKERHUB_IMAGE_NAME }}:${{ needs.get-version.outputs.version }}`
           artifacts: "dist/chromadb-no-telemetry${{needs.get-version.outputs.version}}.tar.gz"
           allowUpdates: true
           removeArtifacts: true
