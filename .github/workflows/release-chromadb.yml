@@ -207,7 +207,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: built-chromadb-package
+          name: "built-chromadb-package"
           path: dist
       - name: Get current date
         id: builddate
