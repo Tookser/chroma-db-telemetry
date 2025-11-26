@@ -227,14 +227,16 @@ jobs:
           makeLatest: true
           generateReleaseNotes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_2 }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN_2 }}
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.5
         if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
         with:
           tag_name: latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_2 }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN_2 }}
       - name: Release Latest
         uses: ncipollo/release-action@v1.20.0
         if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
@@ -251,7 +253,8 @@ jobs:
           removeArtifacts: true
           prerelease: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_2 }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN_2 }}
 #  release-docs:
 #    name: Deploy docs to Vercel
 #    runs-on: ubuntu-latest
