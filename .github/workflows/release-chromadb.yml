@@ -225,6 +225,8 @@ jobs:
           prerelease: false
           makeLatest: true
           generateReleaseNotes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Update Tag
         uses: richardsimko/update-tag@v1.0.5
         if: ${{ needs.check-tag.outputs.tag_matches != 'true' }}
@@ -247,7 +249,8 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
           prerelease: true
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #  release-docs:
 #    name: Deploy docs to Vercel
 #    runs-on: ubuntu-latest

@@ -2,7 +2,7 @@
 
 ## Description
 
-WIP - fork to remove some telemetria from Chroma (python), version 0.5.2316.
+WIP - fork to remove some telemetria from Chroma (python), version 0.5.2317.
 Currently: telemetry (posthog) commented out. Didn't check. Tests removed.
 
 [Original README](ORIGINAL_README.md)
